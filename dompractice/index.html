@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dom Practice</title>
+    <style>
+      #box {
+        position: relative;
+        padding: 10px;
+        width: 800px;
+        height: 30px;
+        border: 5px solid indigo;
+        margin-bottom: 20px;
+
+        background: #e0e0e0;
+      }
+      #ball {
+        position: absolute;
+        left: 0;
+        top: 12px;
+        height: 30px;
+        width: 30px;
+        border-radius: 30px;
+        background-color: indigo;
+      }
+    
+    </style>
+  </head>
+  <body>
+    <div id="box">
+      <div id="ball"></div>
+    </div>
+    
+    <button onclick="start()">Start</button>
+    <button onclick="stop()">Stop</button>
+    
+
+    <script>
+      let ball = document.querySelector("#ball");
+      let left = 0;
+      let direction = "right";
+
+      let interval = setInterval(move, 10);
+
+      function move() {
+        if (direction === "right") {
+          left += 1;
+          if (left > 790) direction = "left";
+        } else {
+          left -= 1;
+          if (left < 1) direction = "right";
+        }
+
+        ball.style.left = `${left}px`;
+      }
+
+      function start() {
+        interval = setInterval(move, 10);
+      }
+
+      function stop() {
+        clearInterval(interval);
+      }
+    </script>
+  </body>
+</html>
